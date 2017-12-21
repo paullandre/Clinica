@@ -1,0 +1,10 @@
+.navbar
+{
+	background-color: rgb(0, 0, 0) !important;
+}
+
+.logo > span, .logo
+{
+	color: gray !important;
+	background-color: #000000 !important;
+}

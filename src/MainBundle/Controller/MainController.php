@@ -24,9 +24,8 @@ class MainController extends Controller
     public function numberAction()
     {
         $number = mt_rand(0, 100);
-
-        return new Response(
-            '<html><body>Lucky number: '.$number.'</body></html>'
-        );
+        return $this->render('base.html.twig', array(
+            'number' => $number,
+        ));
     }
 }
