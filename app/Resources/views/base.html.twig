@@ -7,7 +7,19 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+		
+		{% endblock %}
+        {% block javascripts %}
+			<script src="{{ asset('AdminLTE/bower_components/jquery/dist/jquery.min.js') }}"></script>
+			<!-- jQuery UI 1.11.4 -->
+			<script src="{{ asset('AdminLTE/bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
+			<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+			<script>
+			  $.widget.bridge('uibutton', $.ui.button);
+			</script>
+			<!-- Bootstrap 3.3.7 -->
+			<script src="{{ asset('AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+		{% endblock %}
     </body>
 </html>
