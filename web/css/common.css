@@ -8,3 +8,8 @@
 	color: gray !important;
 	background-color: #000000 !important;
 }
+
+aside .main-sidebar
+{
+	background-color: #000000 !important;
+}

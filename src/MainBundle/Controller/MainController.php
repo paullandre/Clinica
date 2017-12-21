@@ -27,5 +27,10 @@ class MainController extends Controller
         return $this->render('base.html.twig', array(
             'number' => $number,
         ));
+		
+		//$number = mt_rand(0, 100);
+        //return $this->render('Main/index.html.twig', array(
+        //    'number' => $number,
+        //));
     }
 }
