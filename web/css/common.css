@@ -13,3 +13,13 @@ aside .main-sidebar
 {
 	background-color: #000000 !important;
 }
+
+.glowing-border {
+    border: 0.5px solid #dadada !important;    
+}
+
+.glowing-border:focus { 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px darkSlateGray;
+}
