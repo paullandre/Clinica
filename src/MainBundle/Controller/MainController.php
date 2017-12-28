@@ -14,8 +14,16 @@ class MainController extends Controller
      */
     public function indexAction()
     {        
-        return $this->render('Main/index.html.twig', array('message' => "Welcome!"));				
+        return $this->render('default/index2.html.twig', array('message' => "Welcome!"));				
     }        
+    
+    /**
+     * @Route("/add")
+     */
+    public function addAction()
+    {        
+        return $this->render('User/add.html.twig', array('message' => "Welcome!"));				
+    }
     
     /**
      * @Route("/lucky/number")

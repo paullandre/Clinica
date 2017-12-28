@@ -37,8 +37,8 @@
 
         <body class="hold-transition skin-blue sidebar-mini">
             <div class="wrapper">
-                {% block header %}
-                {% endblock %}
+                {#{% block header %}
+                {% endblock %}#}
                 
                 {% block main_nav %}
                 {% endblock %}
@@ -46,10 +46,8 @@
                 {% block main %}
                 {% endblock %}
                 
-                
-                {% block footer %}                    
-                {% endblock %}
-                
+                {#{% block footer %}                    
+                {% endblock %}#}
 
                 <!-- Control Sidebar -->
                 <aside class="control-sidebar control-sidebar-dark">
@@ -298,6 +296,11 @@
                         clean = clean.replace("</p>", "");
                         clean = clean.replace(/&nbsp;/g, '');
                         console.log(clean);
+                    });
+                    
+                    $("#datepicker").datepicker(
+                    {
+                        autoclose: true
                     });
                 });
             </script>

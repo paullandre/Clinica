@@ -10,3 +10,7 @@ main:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+add:
+    path:      /add
+    defaults:  { _controller: MainBundle:Main:add }

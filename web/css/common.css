@@ -14,12 +14,40 @@ aside .main-sidebar
 	background-color: #000000 !important;
 }
 
-.glowing-border {
-    border: 0.5px solid #dadada !important;    
+.glowing-border, #txtSex
+{
+    border: 0.5px solid #dadada !important;
 }
 
-.glowing-border:focus { 
+.glowing-border:focus, #txtSex:focus 
+{
     outline: none;
     border-color: #9ecaed;
     box-shadow: 0 0 10px darkSlateGray;
+}
+
+.skin-blue .main-header, .user-header
+{
+    background-color: #3c8dbc !important;
+}
+
+.user-header p 
+{
+    color: #000000 !important;
+}
+
+#savePatient
+{
+    margin-right: 8px !important;
+    display: inline-block;
+}
+
+#txtSex, #txtAge
+{
+    width: 10em;
+}
+
+#savePatient
+{
+    width: 6em;
 }
