@@ -10,15 +10,14 @@ use Symfony\Component\HttpFoundation\Response;
 class MainController extends Controller
 {
     /**
-     * @Route("/main/{name}")
-     * @Template()
+     * @Route("/index")
      */
-    public function indexAction($name)
-    {
-        return array('name' => $name);
-    }
-	
-	/**
+    public function indexAction()
+    {        
+        return $this->render('Main/index.html.twig', array('message' => "Welcome!"));				
+    }        
+    
+    /**
      * @Route("/lucky/number")
      */
     public function numberAction()

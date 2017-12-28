@@ -124,8 +124,7 @@ $(function () {
     height: '250px'
   });
 
-  /* Morris.js Charts */
-  // Sales chart
+  /* Morris.js Charts 
   var area = new Morris.Area({
     element   : 'revenue-chart',
     resize    : true,
@@ -196,7 +195,7 @@ $(function () {
     donut.redraw();
     line.redraw();
   });
-
+*/
   /* The todo list plugin */
   $('.todo-list').todoList({
     onCheck  : function () {
