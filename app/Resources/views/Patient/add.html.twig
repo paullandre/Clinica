@@ -1,0 +1,183 @@
+{% extends 'Main/index.html.twig' %}
+
+{% block pages %}
+    
+    {#{% if data|default %}
+        {% for records in data %}
+            {{ records.FName }}
+        {% endfor %}
+    {% endif %}#}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Add Record            
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Add Record</li>
+            </ol>
+        </section>
+        
+        <!-- Main content -->
+        <section class="content">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">        
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-7 connectedSortable">                
+                    <!-- quick email widget -->
+                    <div class="box box-info" style="border-top-color: darkSlateGray !important;">
+                        <div class="box-header">
+                            <i class="fa fa-users text-purple"></i>
+
+                            <h3 class="box-title">Add Patient</h3>
+                            <!-- tools box -->
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-danger btn-sm" data-widget="remove" data-toggle="tooltip"
+                                        title="Remove">
+                                    <i class="fa fa-times"></i></button>
+                            </div>
+                            <!-- /. tools -->
+                        </div>
+                        <div class="box-body">
+                            <form action="#" method="post">
+                                <div class="form-group">
+                                    <input type="text" id="txtfName" class="form-control glowing-border" name="fName" placeholder="First Name" style="border-width: 0.5px;">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="txtmName" class="form-control glowing-border" name="mName" placeholder="Middle Name" style="border-width: 0.5px;">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="txtlName" class="form-control glowing-border" name="lName" placeholder="Last Name" style="border-width: 0.5px;">
+                                </div>
+                                <div class="form-group">
+                                    <select id="txtSex">
+                                        <option value="0">Select Sex</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>                                
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="datepicker" placeholder="Select Birthdate">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="txtAge" class="form-control glowing-border" name="age" placeholder="Age" style="border-width: 0.5px;">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="txtNationality" class="form-control glowing-border" name="nationality" placeholder="Nationality" style="border-width: 0.5px;">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text"  id="txtAddress" class="form-control glowing-border" name="address" placeholder="Complete Address" style="border-width: 0.5px;">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="box-footer clearfix">                                                
+                            <button type="button" class="pull-right btn btn-default" id="cancelPatient">Cancel
+                                <i class="glyphicon glyphicon-remove text-red"></i>
+                            </button>                        
+                            <button type="button" class="pull-right btn btn-default" id="savePatient">Save
+                                <i class="fa fa-arrow-circle-right text-green"></i>
+                            </button>
+                        </div>                    
+                    </div>
+                </section>                
+            </div>
+        </section>      
+    </div>        
+    <script src="{{ asset('AdminLTE/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script>
+        function clearFields()
+        {
+            $("#txtfName").val("");
+            $("#txtmName").val("");
+            $("#txtlName").val("");
+            //$("#txtSex").val("");
+            $("#txtSex").val(0);
+            $("#datepicker").val("");
+            $("#txtAge").val("");
+            $("#txtNationality").val("");
+            $("#txtAddress").val("");
+        }
+        
+        $(document).ready(function()
+        {
+            $("#savePatient").on('click', this, function()
+            {
+                var blank_counter = 0;                
+
+                if("" == $("#txtfName").val() || null == $("#txtfName").val()){
+                    blank_counter++;
+                }
+                if("" == $("#txtmName").val() || null == $("#txtmName").val()){
+                    blank_counter++;
+                }
+                if("" == $("#txtlName").val() || null == $("#txtlName").val()){
+                    blank_counter++;
+                }
+                if(0 == $("#txtSex").val()){
+                    blank_counter++;
+                }
+                if("" == $("#datepicker").val() || null == $("#datepicker").val()){
+                    blank_counter++;
+                }
+                if("" == $("#txtAge").val() || null == $("#txtAge").val()){
+                    blank_counter++;
+                }
+                if("" == $("#txtNationality").val() || null == $("#txtNationality").val()){
+                    blank_counter++;
+                }
+                if("" == $("#txtAddress").val() || null == $("#txtAddress").val()){
+                    blank_counter++;
+                }
+                
+                if(blank_counter > 0){
+                    alert("All fields are required!");
+                    return false;
+                }
+                else if(blank_counter == 0){
+                    var fName = $("#txtfName").val();
+                    var mName = $("#txtmName").val();
+                    var lName = $("#txtlName").val();
+                    var sex   = $("#txtSex").val();
+                    var date  = $("#datepicker").val();
+                    var age   = $("#txtAge").val();
+                    var nationality = $("#txtNationality").val();
+                    var address = $("#txtAddress").val();
+                    
+                    var data = { 
+                                    "fName": fName, "mName": mName, "lName": lName, "sex": sex, "date": date, 
+                                    "age": age, "nationality": nationality, "address": address 
+                                };
+                    $.ajax(
+                    {
+                        type: "POST",
+                        url: "{{ path('add') }}", 
+                        data: {"data": data} ,
+                        success: function(result)
+                        {
+                            var result = JSON.parse(result);
+                            var message = result['message'];
+                            var id = result['id'];
+                            
+                            if(message == 1)
+                            {
+                                alert("Record successfully saved! ID#: " + id);
+                                clearFields();
+                            }
+                        }
+                    });
+                }                               
+            });
+        });
+    </script>
+{% endblock %}

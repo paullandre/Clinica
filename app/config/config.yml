@@ -29,6 +29,7 @@ framework:
         handler_id: ~
     fragments: ~
     http_method_override: true
+    translator: { fallbacks: ['%locale%'] }
 
 # Twig Configuration
 twig:
@@ -72,6 +73,10 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+#        entity_managers:
+#            default:
+#                mappings:
+#                    MainBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -80,3 +85,7 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+knp_paginator:
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v4_pagination.html.twig

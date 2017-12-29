@@ -29,7 +29,7 @@
             <!-- bootstrap wysihtml5 - text editor -->
             <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-            <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         {% endblock %}
     </head>
     <body>
@@ -285,19 +285,11 @@
             <script src="{{ asset('AdminLTE/dist/js/pages/dashboard.js') }}"></script>
             <!-- AdminLTE for demo purposes -->
             <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
+{#            <script src="{{ asset('js/Patient/add.js') }}"></script>#}
 
             <script>
                 $(document).ready(function ()
                 {
-                    $("#sendEmail").click(function ()
-                    {
-                        var garbage = $("#txtEmail").val();
-                        var clean = $.trim(garbage.replace("<p>", ""));
-                        clean = clean.replace("</p>", "");
-                        clean = clean.replace(/&nbsp;/g, '');
-                        console.log(clean);
-                    });
-                    
                     $("#datepicker").datepicker(
                     {
                         autoclose: true

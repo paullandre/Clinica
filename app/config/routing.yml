@@ -11,6 +11,22 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
+renderAdd:
+    path:      /renderAdd
+    defaults:  { _controller: MainBundle:Main:renderAdd }
+    
 add:
     path:      /add
     defaults:  { _controller: MainBundle:Main:add }
+
+view:
+    path:      /view
+    defaults:  { _controller: MainBundle:Main:view }
+
+paginate:
+    path:      /paginate
+    defaults:  { _controller: MainBundle:Main:paginate }
+
+#repo:
+#    resource: '@MainBundle/Entity/'
+#    type: annotation
