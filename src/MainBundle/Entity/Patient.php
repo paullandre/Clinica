@@ -76,7 +76,13 @@ class Patient
      * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
-
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="is_archived", type="integer")
+     */
+    private $isArchived;
 
     /**
      * Get id
@@ -278,6 +284,30 @@ class Patient
     public function getAddress()
     {
         return $this->address;
+    }
+    
+    /**
+     * Set isArchived
+     *
+     * @param integer $isArchived
+     *
+     * @return Patient
+     */
+    public function setisArchived($isArchived)
+    {
+        $this->isArchived = $isArchived;
+
+        return $this;
+    }
+
+    /**
+     * Get isArchived
+     *
+     * @return integer
+     */
+    public function getisArchived()
+    {
+        return $this->isArchived;
     }
 }
 

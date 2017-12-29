@@ -73,15 +73,3 @@ aside .main-sidebar
     border-color: #9ecaed;
     box-shadow: 0 0 10px darkSlateGray;
 }
-
-.pagination a
-{
-    border: 1px solid #ddd;
-}
-
-.pagination .page a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.pagination .page a:hover:not(.active) {background-color: #ddd;}

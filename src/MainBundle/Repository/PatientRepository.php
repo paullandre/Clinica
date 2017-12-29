@@ -27,7 +27,8 @@ class PatientRepository
         $birth   = date('Y-m-d ', strtotime($data[4]));
         $age     = $data[5];
         $nation  = $data[6];
-        $address = $data[7];       
+        $address = $data[7];
+        $isArchived = 0;
         
 //        $birth = date('Y-m-d ', $birth);
         
@@ -40,6 +41,7 @@ class PatientRepository
         $patient->setAge($age);
         $patient->setNationality($nation);
         $patient->setAddress($address);
+        $patient->setisArchived($isArchived);
                 
         $this->em->persist($patient);
         $this->em->flush();                                
