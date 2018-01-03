@@ -61,6 +61,22 @@ class MainController extends Controller
     }
     
     /**
+     * @Route("/delete")
+     */
+    public function deleteAction()
+    {        
+        $service = $this->get("my.service");
+        $records = $service->deleteById(92);                
+        
+        print "<pre>";
+        print_r($records);
+        print "</pre>";
+        die;
+        
+        return $this->render('Patient/view.html.twig', array('data' => $records));				
+    }
+    
+    /**
      * @Route("/view")
      */
     public function viewAction()

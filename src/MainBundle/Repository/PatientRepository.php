@@ -18,6 +18,15 @@ class PatientRepository
         $this->em = $em;
     }
     
+    public function deleteById($id)
+    {
+        $result = $this->em->find("MainBundle:Patient", $id);
+        $this->em->remove($result);
+        $this->em->flush();
+        
+        return $result->getfName();
+    }
+    
     public function insertPatient($data = array())
     {   
         $fName   = $data[0];
@@ -49,7 +58,7 @@ class PatientRepository
         return array("message" => "Success" ,"id" => $birth);
     }
 
-    function getAllRecords() 
+    public function getAllRecords() 
     {
         $repo = $this->em->getRepository(Patient::class);
         $array = $repo->findAll();
