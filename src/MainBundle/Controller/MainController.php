@@ -108,7 +108,7 @@ class MainController extends Controller
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
-        );
+        );              
         
         return $this->render('Patient/view.html.twig', array('pagination' => $pagination));
     }

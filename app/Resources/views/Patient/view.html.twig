@@ -2,19 +2,19 @@
 
 {% block pages %}    
     <div class="count">        
-{#        {{ pagination.getTotalItemCount }}#}
+        {#        {{ pagination.getTotalItemCount }}#} 
     </div>
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                View Records
+                View Records                
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">View Record</li>
             </ol>
         </section>
-        
+
         <section class="content">                        
             <div class="row">
                 <section class="col-lg-12 connectedSortable">                                    
@@ -29,7 +29,7 @@
                                     <i class="fa fa-times"></i></button>
                             </div>                            
                         </div>
-                        
+
                         <div class="box-body">
                             <table class="table table-bordered" id="paginateTable">
                                 <tr>
@@ -44,33 +44,48 @@
                                     <th style="width: 10em;text-align: center;">Address</th>
                                     <th style="width: 3em;text-align: center;">Action</th>
                                 </tr>
-                                
+
                                 {% if pagination|default %}
+
+                                    {% set pageNumber = app.request.uri| last %}                                    
+
                                     {% for article in pagination %}
-                                    <tr {% if loop.index is odd %}class="color"{% endif %}>
-                                        <td>{{ loop.index }}</td>
-                                        <td>{{ article.FName }}</td>
-                                        <td>{{ article.MName }}</td>
-                                        <td>{{ article.LName }}</td>
-                                        <td>{{ article.Sex == 1 ? "Male" : "Female" }}</td>
-                                        <td>{{ article.Birth | date('m/d/Y') }}</td>
-                                        <td>{{ article.Age }}</td>
-                                        <td>{{ article.Nationality }}</td>
-                                        <td>{{ article.Address }}</td>
-                                        <td style="width: 3em; white-space: nowrap;"><button type="button" class="btn btn-xs btn-info" title="Edit">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            &nbsp;
-                                            <button type="button" class="btn btn-xs btn-danger" title="Delete">
-                                                <i class="fa fa-remove"></i>
-                                            </button>
-                                        </td>                                        
-                                    </tr>
+                                        <tr {% if loop.index is odd %}class="color"{% endif %}>                                        
+                                            {% if pageNumber == 'e' or pageNumber == 1 %}
+                                                <td>{{ loop.index }}</td>
+                                            {% else %}
+                                                {% if pageNumber == 2 %}
+                                                    <td>{{ pageNumber + 8 + loop.index }}</td>
+                                                {% else %}
+                                                    <td>{{ (pageNumber -1) * 10 + loop.index }}</td>
+                                                {% endif %}
+                                            {% endif %}
+                                            <td>{{ article.FName }}<input type="hidden" value="{{ article.id }}"/></td>
+                                            <td>{{ article.MName }}</td>
+                                            <td>{{ article.LName }}</td>
+                                            <td>{{ article.Sex == 1 ? "Male" : "Female" }}</td>
+                                            <td>{{ article.Birth | date('m/d/Y') }}</td>
+                                            <td>{{ article.Age }}</td>
+                                            <td>{{ article.Nationality }}</td>
+                                            <td>{{ article.Address }}</td>
+                                            <td style="width: 3em; white-space: nowrap;">
+                                                <button type="button" class="btn btn-xs btn-info" title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                &nbsp;
+                                                <button type="button" class="btn btn-xs btn-danger btnDelete" 
+                                                        data-toggle="modal" 
+                                                        data-target="#exampleModal" 
+                                                        title="Delete">
+                                                    <i class="fa fa-remove"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
                                     {% endfor %}
                                 {% endif %}
                             </table>
                         </div>
-                        
+
                         <div class="navigation">
                             {{ knp_pagination_render(pagination) }}
                         </div>
@@ -79,11 +94,57 @@
                         </div>
                     </div>
                 </section>
-                
-                <section class="col-lg-5 connectedSortable">
 
+                <section class="col-lg-5 connectedSortable">                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this record?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="pName">
+                                
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" id="deleteRecord">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>                
             </div>            
         </section>        
     </div>
+    <script src="{{ asset('AdminLTE/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function ()
+        {
+            /* GLOBAL VARS */
+            var id = "";
+            var fName = "";
+            var mName = "";
+            var lName = "";
+            
+            $(".btnDelete").each(function ()
+            {
+                $(this).click(function ()
+                {
+                    id = $(this).parent("td").parent("tr").children("td:nth-child(2)").children("input").val();
+                    //alert(id);
+                    fName = $(this).parent("td").parent("tr").children("td:nth-child(2)").text();
+                    mName = $(this).parent("td").parent("tr").children("td:nth-child(3)").text();
+                    lName = $(this).parent("td").parent("tr").children("td:nth-child(4)").text();
+                    
+                    $("#pName").html( fName + " " + mName + ". " + lName );
+                    //alert(fName);
+                    $('#myModal').modal();
+                });                                
+            });
+        });
+    </script>
 {% endblock %}
