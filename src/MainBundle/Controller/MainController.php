@@ -46,7 +46,7 @@ class MainController extends Controller
         $update[2] = "Buog";
         
         $service = $this->get("my.service");
-        $records = $service->updateRecord($update);
+        $records = $service->searchRecord($update);
         
         print "<pre>";
         print_r($records);

@@ -24,12 +24,9 @@ class PatientRepository
         $fName = $data[1];
         $lName = $data[2];
         
-        $query  = $this->em->createQuery("SELECT u FROM MainBundle:Patient u WHERE u.id = $id 
-                    AND u.fName = '$fName' 
-                    AND u.lName = '$lName' ");        
-        $result = $query->getResult();
+        $users = $this->em->getRepository('MainBundle:Patient')->findBy(array('id' => 94, 'lName' => 'Buog'));
         
-        $data = $result[0];        
+        $data = $users[0];        
         return $data;
     }
     
@@ -39,8 +36,8 @@ class PatientRepository
         $fName = $data[1];
         $lName = $data[2];
         
-        $data = $this->em->find('MainBundle:Patient', $id);
-        
+        $data = $this->em->find('MainBundle:Patient', $id);                
+       
         $data->setfName($fName);
         $data->setlName($lName);
       
