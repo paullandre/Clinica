@@ -36,6 +36,26 @@ class MainController extends Controller
     }
     
     /**
+     * @Route("/update")
+     */
+    public function updateAction()
+    {
+        $update = array();
+        $update[0] = 94;
+        $update[1] = "Tamulmol";
+        $update[2] = "Buog";
+        
+        $service = $this->get("my.service");
+        $records = $service->updateRecord($update);
+        
+        print "<pre>";
+        print_r($records);
+        print "</pre>";
+        
+        die;
+    }
+    
+    /**
      * @Route("/add")
      */
     public function addAction(Request $request)

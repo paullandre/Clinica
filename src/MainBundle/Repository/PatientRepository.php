@@ -18,6 +18,38 @@ class PatientRepository
         $this->em = $em;
     }
     
+    public function searchRecord($data = array())
+    {
+        $id    = $data[0];
+        $fName = $data[1];
+        $lName = $data[2];
+        
+        $query  = $this->em->createQuery("SELECT u FROM MainBundle:Patient u WHERE u.id = $id 
+                    AND u.fName = '$fName' 
+                    AND u.lName = '$lName' ");        
+        $result = $query->getResult();
+        
+        $data = $result[0];        
+        return $data;
+    }
+    
+    public function updateRecord($data = array())
+    {
+        $id    = $data[0];
+        $fName = $data[1];
+        $lName = $data[2];
+        
+        $data = $this->em->find('MainBundle:Patient', $id);
+        
+        $data->setfName($fName);
+        $data->setlName($lName);
+      
+        $this->em->persist($data);
+        $this->em->flush();
+        
+        return $data;
+    }
+    
     public function deleteById($id)
     {
         $result = $this->em->find("MainBundle:Patient", $id);
