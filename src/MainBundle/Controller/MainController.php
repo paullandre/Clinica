@@ -45,7 +45,7 @@ class MainController extends Controller
         $update[1] = "Tamulmol";
         $update[2] = "Buog";
         
-        $service = $this->get("my.service");
+        $service = $this->get("services.patient");
         $records = $service->searchRecord($update);
         
         print "<pre>";
@@ -72,7 +72,7 @@ class MainController extends Controller
             array_push($save, $fields);
         }
         
-        $service = $this->get("my.service");
+        $service = $this->get("services.patient");
         $records = $service->insertPatient($save);
         
         if($records['message'] == "Success")            
@@ -85,7 +85,7 @@ class MainController extends Controller
      */
     public function deleteAction()
     {        
-        $service = $this->get("my.service");
+        $service = $this->get("services.patient");
         $records = $service->deleteById(92);                
         
         print "<pre>";
@@ -101,7 +101,7 @@ class MainController extends Controller
      */
     public function viewAction()
     {        
-        $service = $this->get("my.service");
+        $service = $this->get("services.patient");
         $records = $service->getAllRecords();                
         
         foreach($records as $data)

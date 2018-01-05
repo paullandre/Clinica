@@ -4,7 +4,7 @@
 #        arguments: [@service_id, "plain_value", %parameter%]
 
 services:
-    my.service:
+    services.patient:
         class: MainBundle\Repository\PatientRepository
         arguments: [ @doctrine.orm.entity_manager, @service_container ]
             
